@@ -1,0 +1,58 @@
+# Example Terraform variables file
+# Copy this file to terraform.tfvars and customize the values
+
+# Required Variables
+project_id = "your-gcp-project-id"
+vpc_name   = "my-vpc-network"
+
+# Optional Variables
+region             = "us-east1"
+gke_cluster_name   = "my-gke-cluster"
+deletion_protection = false  # Set to true for production environments
+
+# Network CIDR ranges (customize if needed)
+gke_subnet_node_ip_cidr_range     = "10.0.0.0/14"
+gke_subnet_pods_ip_cidr_range     = "10.4.0.0/14"
+gke_subnet_services_ip_cidr_range = "10.8.0.0/18"
+
+# Node Pool Configuration
+node_pools = [
+  {
+    name                 = "default-pool"
+    machine_type         = "e2-medium"
+    total_min_node_count = 1
+    total_max_node_count = 3
+    preemptible          = false
+    labels = {
+      environment = "dev"
+      team        = "platform"
+      managed_by  = "terraform"
+    }
+  }
+]
+
+# Example with multiple node pools for production
+# node_pools = [
+#   {
+#     name                 = "system-pool"
+#     machine_type         = "e2-standard-2"
+#     total_min_node_count = 2
+#     total_max_node_count = 4
+#     preemptible          = false
+#     labels = {
+#       pool_type   = "system"
+#       environment = "production"
+#     }
+#   },
+#   {
+#     name                 = "workload-pool"
+#     machine_type         = "e2-standard-4"
+#     total_min_node_count = 1
+#     total_max_node_count = 10
+#     preemptible          = true
+#     labels = {
+#       pool_type   = "workload"
+#       environment = "production"
+#     }
+#   }
+# ]
