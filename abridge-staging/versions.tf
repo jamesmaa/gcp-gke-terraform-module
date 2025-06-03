@@ -15,9 +15,9 @@ terraform {
 
 
 # REPLACE ME with your own backend configuration
-terraform {
-  backend "gcs" {
-    bucket = "jmaa-abridge-staging-demo"
-    prefix = "terraform/state"
-  }
-}
+# terraform {
+#   backend "gcs" {
+#     bucket = "jmaa-abridge-staging-demo"
+#     prefix = "terraform/state"
+#   }
+# }
